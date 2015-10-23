@@ -1,13 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <windows.h>
 
 void main() {
 
 	int choix;
+	int quitter;
+	int test=0;
 
 	// Fixe la taille console pour avoir un affichage correct
 	system("mode con LINES=35 COLS=130");
-
+	
 	printf("*********************************************************************************************************************************\n");
 	printf("*****                     /~\\          ******************************************************************************************\n");
 	printf("*****                    |oo )         ******************************************************************************************\n");
@@ -38,7 +41,32 @@ void main() {
 	printf("\t\t*** 1 :  Ton compte tu creditera   ***\t\t\t*** 3 :        Quitter          ***\n");
 	printf("\t\t***                                ***\t\t\t***                             ***\n");
 	printf("\t\t**************************************\t\t\t***********************************\n");
-	scanf("%d", &choix);
+	/*
+	do {
+
+		switch (choix) {
+
+		case 0 :
+			break;
+		case 1 :
+			break;
+		case 2 :
+			break;
+		case 3 :
+			quitter = 1;
+			break;
+
+		}
+
+	} while (quitter==0);
+	*/
+	do {
+		printf("%d\n", test);
+		test=test+1;
+		Sleep(1000);
+	} while (1);
+	
+	//scanf("%d", &choix);
 
 	system("pause");
 }
