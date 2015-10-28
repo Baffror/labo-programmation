@@ -174,7 +174,7 @@ void main() {
 				printf("Nous vous remercions d'acheter ce jeu 15X plus cher qu'il ne vaut vraiment. Bisous des iles Caimans.\n");
 			}
 			else {
-				printf("Une erreur s'est produite pour une des raisons suivante : \n\t* Vous n'avez pas assez d'argent sur votre \n\t* Nous n'avons plus de stock ( recredite ton compte, cela augmente les chances qu'on recommande ) \n\t* Vous essayer de revendre un jeu.\n\tNous vous rappelons qu'acheter, c'est acheter, revendre c'est nous voler ! Cf CGu !\n");
+				printf("Une erreur s'est produite pour une des raisons suivante : \n\t* Vous n'avez pas assez d'argent sur votre compte\n\t* Nous n'avons plus de stock ( recredite ton compte, cela augmente les chances qu'on recommande ) \n\t* Vous essayer de revendre un jeu.\n\tNous vous rappelons qu'acheter, c'est acheter, revendre c'est nous voler ! Cf CGu !\n");
 			}
 
 
