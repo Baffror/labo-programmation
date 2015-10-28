@@ -1,18 +1,18 @@
-/* ******************************************** LE CALCUL IMC *******************************************/
+/* ******************************************** LE SHOP *******************************************/
 #include <stdlib.h>
 #include <stdio.h>
 
 /*
 MEMO :
-	* Sleep sous windows, sleep pour UNIX ( gaffe à la casse ). Vérifier la doc
-	* Sleep et sleep font parti de la librairie window.h
+* Sleep sous windows, sleep pour UNIX ( gaffe à la casse ). Vérifier la doc
+* Sleep et sleep font parti de la librairie window.h
 TODO :
-	* Continuer les recherches pour empêcher cet état de clignottement.
-	* Tester avec des consoles différentes
-	* Tester sur des PC avec une faible configuration
+* Continuer les recherches pour empêcher cet état de clignottement.
+* Tester avec des consoles différentes
+* Tester sur des PC avec une faible configuration
 NOTE :
-	* Vider la console ne donne pas de résultat satisfaisant sous windows 7 ( Problème de console ? )
-	* Eviter les animations, finallement c'est chiant d'attendre pour sortir du programme.
+* Vider la console ne donne pas de résultat satisfaisant sous windows 7 ( Problème de console ? )
+* Eviter les animations, finallement c'est chiant d'attendre pour sortir du programme.
 */
 
 void dessine() {
@@ -59,8 +59,8 @@ void main() {
 
 	// initialisation variable
 	int choix, ajoutCredit, retourScanf;
-	int animation=0, credit=0, quitter=0, achatJeu=0;
-	
+	int animation = 0, credit = 0, quitter = 0, achatJeu = 0;
+
 	do {
 		printf("*********************************************************************************************************************************\n");
 		printf("*****                     /~\\          ******************************************************************************************\n");
@@ -98,93 +98,96 @@ void main() {
 		system("cls");
 		switch (choix) {
 
-			case 0 :
-				// affichage
-				printf("*********************************************************************************************************************************\n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **       SOLDE DE TON COMPTE        **                                              \n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **************************************                                              \n\n\n");
-				printf("\t\t\t\t\t\t\ttu possede %d credits\n",credit);
-				printf("*********************************************************************************************************************************\n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **          JEUX POSSEDES           **                                              \n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **************************************                                              \n\n\n");
-				printf("\t\t\t\t\t\ttu possede %d Constructor ( mod Padre )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", achatJeu);
-				// pour éviter le retour trop rapide, attente action utilisateur
-				system("pause");
-				break;
-			case 1 :
-				printf("*********************************************************************************************************************************\n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **       CREDITES TON COMPTE        **                                              \n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **************************************                                              \n\n\n");
-				printf("En ajoutant des CREDITS sur mon compte : \n\t * Je renonce a mon droit de retractation \n\t * A tout droit de reclamation dans le cas ou les dirigeants feraient faillite depuis un paraids fiscale.\n\t * Je jure sur mon honneur ne pas subir une quelconque menace pour effectuer cet achat \n\t * Je jure n'avoir aucun pied actuellement dans le beton \n\t * Je suis entierement d'accord avec le fait que cette societe utilise mon numero de carte de credit comme bon lui semble.\n\n\n\n\t Je souhaite donc ajouter ( en euro ), sans virgule et de preference avec plein de 0 ) : ");
-				retourScanf = scanf_s("%d", &ajoutCredit);
+		case 0:
+			// affichage
+			printf("*********************************************************************************************************************************\n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **       SOLDE DE TON COMPTE        **                                              \n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **************************************                                              \n\n\n");
+			printf("\t\t\t\t\t\t\ttu possede %d credits\n", credit);
+			printf("*********************************************************************************************************************************\n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **          JEUX POSSEDES           **                                              \n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **************************************                                              \n\n\n");
+			printf("\t\t\t\t\t\ttu possede %d Constructor ( mod Padre )\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", achatJeu);
+			// pour éviter le retour trop rapide, attente action utilisateur
+			system("pause");
+			break;
+		case 1:
+			printf("*********************************************************************************************************************************\n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **       CREDITES TON COMPTE        **                                              \n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **************************************                                              \n\n\n");
+			printf("En ajoutant des CREDITS sur mon compte : \n\t * Je renonce a mon droit de retractation \n\t * A tout droit de reclamation dans le cas ou les dirigeants feraient faillite depuis un paraids fiscale.\n\t * Je jure sur mon honneur ne pas subir une quelconque menace pour effectuer cet achat \n\t * Je jure n'avoir aucun pied actuellement dans le beton \n\t * Je suis entierement d'accord avec le fait que cette societe utilise mon numero de carte de credit comme bon lui semble.\n\n\n\n\t Je souhaite donc ajouter ( en euro ), sans virgule et de preference avec plein de 0 ) : ");
+			retourScanf = scanf_s("%d", &ajoutCredit);
 
-				// vide la console
-				system("cls");
-				if (retourScanf == 1) {
-					if (ajoutCredit > 0) {
-						credit += ajoutCredit;
-						printf("%d CREDITS ont bien ete ajoute a ton compte.\n",ajoutCredit);
-						ajoutCredit = 0;
-						system("pause");
-					} else {
-						printf("Tu tente de nous voler ? On viens d'embaucher un sicilien et on lui a file ton adresse et deux sac de beton.\n");
-						quitter = 1;
-						system("pause");
-					}
-				} else {
-					printf("Erreur dans les donnees. Appuyez sur une touche poure venir au menu precedent.\n");
+			// vide la console
+			system("cls");
+			if (retourScanf == 1) {
+				if (ajoutCredit > 0) {
+					credit += ajoutCredit;
+					printf("%d CREDITS ont bien ete ajoute a ton compte.\n", ajoutCredit);
+					ajoutCredit = 0;
 					system("pause");
 				}
-
-				break;
-			case 2 :
-				printf("*********************************************************************************************************************************\n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **       ACHETER DES JEUX           **                                              \n");
-				printf("                                             **                                  **                                              \n");
-				printf("                                             **************************************                                              \n\n\n");
-				printf("\t\t**************************************\t\t\t***********************************\n");
-				printf("\t\t***                                ***\t\t\t***                             ***\n");
-				printf("\t\t*** 0 : Constructor ( mod Padre )  ***\t\t\t*** 1 : Tombe De Raideur        ***\n");
-				printf("\t\t***                    150 credits ***\t\t\t***                OUT OF SALES ***\n");
-				printf("\t\t**************************************\t\t\t***********************************\n");
-				printf("\t\t***                                ***\t\t\t***                             ***\n");
-				printf("\t\t*** 2 :  Starcracraft              ***\t\t\t*** 3 : League Of Badass        ***\n");
-				printf("\t\t***                   OUT OF SALES ***\t\t\t***                OUT OF SALES ***\n");
-				printf("\t\t**************************************\t\t\t***********************************\n");
-				
-				scanf_s("%d", &retourScanf);
-
-				// vide la console
-				system("cls");
-				
-				if (retourScanf == 0 && credit >= 150 ) {
-					credit -= 150;
-					achatJeu++;
-					printf("Constructor (mod Padre) a bien ete ajoute a votre compte.\n");
-					printf("150 credits ont ete debite de votre compte.\n");
-					printf("Nous vous remercions d'acheter ce jeu 15X plus cher qu'il ne vaut vraiment. Bisous des iles Caimans.\n");
-				} else {
-					printf("Une erreur s'est produite pour une des raisons suivante : \n\t* Vous n'avez pas assez d'argent sur votre \n\t* Nous n'avons plus de stock ( recredite ton compte, cela augmente les chances qu'on recommande ) \n\t* Vous essayer de revendre un jeu.\n\tNous vous rappelons qu'acheter, c'est acheter, revendre c'est nous voler ! Cf CGu !\n");
+				else {
+					printf("Tu tente de nous voler ? On viens d'embaucher un sicilien et on lui a file ton adresse et deux sac de beton.\n");
+					quitter = 1;
+					system("pause");
 				}
-
-
-				// pour éviter le retour trop rapide, attente action utilisateur
+			}
+			else {
+				printf("Erreur dans les donnees. Appuyez sur une touche poure venir au menu precedent.\n");
 				system("pause");
-				break;
-			case 3 :
-				quitter = 1;
-				break;
+			}
+
+			break;
+		case 2:
+			printf("*********************************************************************************************************************************\n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **       ACHETER DES JEUX           **                                              \n");
+			printf("                                             **                                  **                                              \n");
+			printf("                                             **************************************                                              \n\n\n");
+			printf("\t\t**************************************\t\t\t***********************************\n");
+			printf("\t\t***                                ***\t\t\t***                             ***\n");
+			printf("\t\t*** 0 : Constructor ( mod Padre )  ***\t\t\t*** 1 : Tombe De Raideur        ***\n");
+			printf("\t\t***                    150 credits ***\t\t\t***                OUT OF SALES ***\n");
+			printf("\t\t**************************************\t\t\t***********************************\n");
+			printf("\t\t***                                ***\t\t\t***                             ***\n");
+			printf("\t\t*** 2 :  Starcracraft              ***\t\t\t*** 3 : League Of Badass        ***\n");
+			printf("\t\t***                   OUT OF SALES ***\t\t\t***                OUT OF SALES ***\n");
+			printf("\t\t**************************************\t\t\t***********************************\n");
+
+			scanf_s("%d", &retourScanf);
+
+			// vide la console
+			system("cls");
+
+			if (retourScanf == 0 && credit >= 150) {
+				credit -= 150;
+				achatJeu++;
+				printf("Constructor (mod Padre) a bien ete ajoute a votre compte.\n");
+				printf("150 credits ont ete debite de votre compte.\n");
+				printf("Nous vous remercions d'acheter ce jeu 15X plus cher qu'il ne vaut vraiment. Bisous des iles Caimans.\n");
+			}
+			else {
+				printf("Une erreur s'est produite pour une des raisons suivante : \n\t* Vous n'avez pas assez d'argent sur votre \n\t* Nous n'avons plus de stock ( recredite ton compte, cela augmente les chances qu'on recommande ) \n\t* Vous essayer de revendre un jeu.\n\tNous vous rappelons qu'acheter, c'est acheter, revendre c'est nous voler ! Cf CGu !\n");
+			}
+
+
+			// pour éviter le retour trop rapide, attente action utilisateur
+			system("pause");
+			break;
+		case 3:
+			quitter = 1;
+			break;
 
 		}
 
-	} while (quitter==0);
+	} while (quitter == 0);
 
 	// Logo marque de fin !
 	dessine();
