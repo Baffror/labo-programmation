@@ -85,7 +85,7 @@ void main() {
 	do {
 
 		// initialisation variables
-		int valideChoixJeu=0, valideChoixAutomatique=0;
+		int valideChoixJeu=0, valideChoixAutomatique=0, finJeu=0, nbrCarteJoueur1=0, nbrCarteJoueur2=0;
 		int choixJeu, choixAutomatique, choixSwitch;
 
 
@@ -136,6 +136,19 @@ void main() {
 		tabCarte[0][0][10] = 12;	tabCarte[0][1][10] = 12;	tabCarte[0][2][10] = 12;	tabCarte[0][3][10] = 12;
 		tabCarte[0][0][11] = 13;	tabCarte[0][1][11] = 13;	tabCarte[0][2][11] = 13;	tabCarte[0][3][11] = 13;
 		tabCarte[0][0][12] = 14;	tabCarte[0][1][12] = 14;	tabCarte[0][2][12] = 14;	tabCarte[0][3][12] = 14;
+
+		/*                                               LES CARTES DU JOUEUR                                            */
+		/*
+			tabJoueur1[52] => 0-52 = max cartes possédés par le joueur
+			tabJoueur1[52][2] => 0 = ligne equivalente de la carte ( carreau, coeur, trefle ou pique )
+								 1 = N° de la carte correspondant dans le tableau tabCarte
+
+			Pour obtenir la valeur de la carte après le mélange, nous avons donc :
+			tabCarte[0 ou 1][(tabJoueur1[X][0])][(tabJoueur1[X][1])]
+										
+		*/
+		int tabJoueur1[52][2] = { 0,0 };
+		int tabJoueur2[52][2] = { 0,0 };
 
 
 
@@ -245,6 +258,113 @@ void main() {
 
 			}
 
+			_sleep(1500);
+			system("cls");
+			printf("*********************************************************************************************************************************\n");
+			printf("                                       *************************************************                                         \n");
+			printf("                                       **                                             **                                         \n");
+			printf("                                       **       PATIENCE... DISTRIBUTION EN COURS     **                                         \n");
+			printf("                                       **                                             **                                         \n");
+			printf("                                       *************************************************                                         \n");
+
+			int cpt = 0;
+			// DISTRIBUTION POUR UN JEU DE 32 CARTES
+			if (choixJeu == 32) {
+
+				for (int i = 0; i < 4; i++) {
+					
+					for (int j = 0; j < 8; j++) {
+
+						// donne la carte au joueur 1
+						if (j % 2 == 0) {
+							tabJoueur1[cpt][0] = i;
+							tabJoueur1[cpt][1] = j;
+							// Nombre de carte dans la pile joueur1
+							nbrCarteJoueur1++;
+						// donne la carte au joueur 2
+						} else {
+							tabJoueur2[cpt][0] = i;
+							tabJoueur2[cpt][1] = j;
+							// Nombre de carte dans la pile joueur2
+							nbrCarteJoueur2++;
+							// indice permettant de créer la pile joueur.
+							cpt++;
+						}
+
+
+					}
+
+				}
+			// DISTRIBUTION POUR UN JEU DE 52 CARTES
+			} else {
+
+				for (int i = 0; i < 4; i++) {
+					
+					for (int j = 0; j < 8; j++) {
+
+						// donne la carte au joueur 1
+						if (j % 2 == 0) {
+							tabJoueur1[cpt][0] = i;
+							tabJoueur1[cpt][1] = j;
+							// Nombre de carte dans la pile joueur1
+							nbrCarteJoueur1++;
+						// donne la carte au joueur 2
+						} else {
+							tabJoueur2[cpt][0] = i;
+							tabJoueur2[cpt][1] = j;
+							// Nombre de carte dans la pile joueur2
+							nbrCarteJoueur2++;
+							// indice permettant de créer la pile joueur.
+							cpt++;
+						}
+
+
+					}
+
+				}
+
+			}
+			_sleep(1500);
+
+		    system("cls");
+			printf("*********************************************************************************************************************************\n");
+			printf("                                       *************************************************                                         \n");
+			printf("                                       **                                             **                                         \n");
+			printf("                                       **          QUE LA BATAILLE COMMENCE !         **                                         \n");
+			printf("                                       **                                             **                                         \n");
+			printf("                                       *************************************************                                         \n");
+
+			do {
+
+				// UN GAGNANT ?
+				if (nbrCarteJoueur1 == 0 || nbrCarteJoueur2 == 0) {
+
+					if (nbrCarteJoueur1 == 0) {
+						printf("*********************************************************************************************************************************\n");
+						printf("                                       *************************************************                                         \n");
+						printf("                                       **                                             **                                         \n");
+						printf("                                       **             JOUEUR 1 GAGNE !                **                                         \n");
+						printf("                                       **                                             **                                         \n");
+						printf("                                       *************************************************                                         \n");
+					}
+					else {
+						printf("*********************************************************************************************************************************\n");
+						printf("                                       *************************************************                                         \n");
+						printf("                                       **                                             **                                         \n");
+						printf("                                       **             JOUEUR 2 GAGNE !                **                                         \n");
+						printf("                                       **                                             **                                         \n");
+						printf("                                       *************************************************                                         \n");
+					}
+					// fin de la partie !
+					finJeu = 1;
+
+					// BATAILLE !
+				} else {
+
+				}
+
+			} while (finJeu == 0);
+
 			
 			break;
 		/*                                                     QUITTER                                          */
@@ -252,7 +372,7 @@ void main() {
 			quitter = 1;
 			dessine();
 			break;
-	    /*                                               DEFAULT ERREUR DANS LES DONNEES ENTREES RETOUR START                                            */
+	    /*                                               DEFAULT ERREUR DANS LES DONNEES ENTREES -> RETOUR START                                            */
 		default:
 			printf("Merci de bien vouloir choisir l'option 0 ou 1");
 			system("pause");
