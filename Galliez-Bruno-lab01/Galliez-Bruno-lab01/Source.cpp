@@ -49,6 +49,9 @@ void dessine() {
 
 void main() {
 
+	// Taille console
+	system("mode con LINES=31 COLS=130");
+
 	char nom[50];
 	char prenom[50];
 	int age;
@@ -131,6 +134,9 @@ void main() {
 		}
 
 	}
+	system("pause");
+
+	dessine();
 	system("pause");
 
 
