@@ -109,6 +109,7 @@ void main()
 						scanf_s("%d", &longueur);
 
 						// On dessine la forme
+						system("cls");
 						if (longueur > 0 && longueur <= 25) {
 
 							for (int i = 0; i < nbrLigne; i++) {
