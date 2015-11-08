@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <Windows.h>
 
 void dessine() {
 
@@ -18,7 +19,7 @@ void dessine() {
 	printf("**                                   ,dMMMb.     ~~' OO     `YOOOOOP'     OO `~~     ,dMMMb.                                   **\n");
 	printf("**                                _,dP~  `YMba_      OOb      `OOO'      dOO      _aMMP'  ~Yb._                                **\n");
 	printf("**                               <MMP'     `~YMMa_   YOOo   @  OOO  @   oOOP   _adMP~'      `YMM>                              **\n");
-	printf("**                                            `YMMMM\`OOOo     OOO     oOOO'/MMMMP'                                             **\n");
+	printf("**                                            `YMMMM\\`OOOo     OOO     oOOO'/MMMMP'                                             **\n");
 	printf("**                                    ,aa.     `~YMMb `OOOb._,dOOOb._,dOOO'dMMP~'       ,aa.                                   **\n");
 	printf("**                                  ,dMYYMba._         `OOOOOOOOOOOOOOOOO'          _,adMYYMb.                                 **\n");
 	printf("**                                 ,MP'   `YMMba._      OOOOOOOOOOOOOOOOO       _,adMMP'   `YM.                                **\n");
@@ -67,6 +68,64 @@ void bienvenue() {
 	system("pause");
 }
 
+void affCarte(int numero, int type) {
+
+	// TROP CRADE ! Faut que j'apprenne à gérer des variables sous forme de chaine de caractères.
+	// Possibilité de bosser avec des constantes ?
+
+	if (type == 0) {
+		if (numero < 11) {
+			printf("%d de carreau", numero);
+		}else if (numero == 11) {
+			printf("Valet de carreau");
+		}else if (numero == 12) {
+			printf("Dame de carreau");
+		}else if (numero == 12) {
+			printf("Roi de carreau");
+		}else if (numero == 13) {
+			printf("As de carreau");
+		}
+	} else if (type == 1) {
+		if (numero < 11) {
+			printf("%d de coeur", numero);
+		}else if (numero == 11) {
+			printf("Valet de coeur");
+		}else if (numero == 12) {
+			printf("Dame de coeur");
+		}else if (numero == 12) {
+			printf("Roi de coeur");
+		}else if (numero == 13) {
+			printf("As de coeur");
+		}
+	}else if (type == 2) {
+		if (numero < 11) {
+			printf("%d de pique", numero);
+		}else if (numero == 11) {
+			printf("Valet de pique");
+		}else if (numero == 12) {
+			printf("Dame de pique");
+		}else if (numero == 12) {
+			printf("Roi de pique");
+		}else if (numero == 13) {
+			printf("As de pique");
+		}
+	}else if (type == 3) {
+		if (numero < 11) {
+			printf("%d de trefle", numero);
+		}else if (numero == 11) {
+			printf("Valet de trefle");
+		}else if (numero == 12) {
+			printf("Dame de trefle");
+		}else if (numero == 12) {
+			printf("Roi de trefle");
+		}else if (numero == 13) {
+			printf("As de trefle");
+		}
+	}
+
+
+}
+
 void purge(void)
 {
 	int c;
@@ -77,7 +136,7 @@ void purge(void)
 void main() {
 
 	// variable hors boucle
-	int quitter = 0;
+	int quitter = 0, finJeu =0,pileJoueur1=0,pileJoueur2=0,cpt = 0;
 
 	// Taille console
 	system("mode con LINES=31 COLS=130");
@@ -258,7 +317,7 @@ void main() {
 
 			}
 
-			_sleep(1500);
+			Sleep(1500);
 			system("cls");
 			printf("*********************************************************************************************************************************\n");
 			printf("                                       *************************************************                                         \n");
@@ -267,7 +326,7 @@ void main() {
 			printf("                                       **                                             **                                         \n");
 			printf("                                       *************************************************                                         \n");
 
-			int cpt = 0;
+			cpt = 0;
 			// DISTRIBUTION POUR UN JEU DE 32 CARTES
 			if (choixJeu == 32) {
 
@@ -324,7 +383,7 @@ void main() {
 				}
 
 			}
-			_sleep(1500);
+			Sleep(1500);
 
 		    system("cls");
 			printf("*********************************************************************************************************************************\n");
@@ -358,9 +417,30 @@ void main() {
 					// fin de la partie !
 					finJeu = 1;
 
-					// BATAILLE !
+				// BATAILLE !
 				} else {
 
+					/************************************ VOYONS LES CARTES QUI SORTENT ***********************************/
+					printf("\n*****\npiljoueur 1 => %d / pilejoueur2 => %d\nJ1 => %d / %d\J2 => %d / %d\n*****\n", pileJoueur1, pileJoueur2, tabJoueur1[pileJoueur1][1], tabJoueur1[pileJoueur1][0], tabJoueur2[pileJoueur2][1], tabJoueur2[pileJoueur2][0]);
+					printf("Joueur 1 tire : ");
+					affCarte(tabJoueur1[pileJoueur1][1], tabJoueur1[pileJoueur1][0]);
+					printf(" VS ");
+					printf("Joueur 2 tire : ");
+					affCarte(tabJoueur2[pileJoueur2][1], tabJoueur2[pileJoueur2][0]);
+					printf("\n");
+					system("pause");
+
+					// on avance dans la pile
+					pileJoueur1++;
+					pileJoueur2++;
+					if (pileJoueur1 > nbrCarteJoueur1) { pileJoueur1 = 0; }
+					if (pileJoueur1 > nbrCarteJoueur1) { pileJoueur1 = 0; }
+
+					/*
+					if ( tabCarte[choixJeu][tabJoueur1[pileJoueur1][0]][tabJoueur1[pileJoueur1][1]] == tabCarte[choixJeu][tabJoueur2[pileJoueur2][0]][tabJoueur2[pileJoueur2][1]] ) {
+
+					}
+					*/
 				}
 
 			} while (finJeu == 0);
