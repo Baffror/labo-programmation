@@ -282,7 +282,7 @@ void main() {
 			for (int ligne = 0; ligne < 4; ligne++) {
 
 				for (int melange = 0; melange < 50; melange++) {
-
+						
 					if (choixJeu == 32) {
 
 						// tir ( PAN ! ) deux valeurs entre 0 et 7
