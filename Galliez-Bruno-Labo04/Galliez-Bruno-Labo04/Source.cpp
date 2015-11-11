@@ -39,6 +39,8 @@ void dessine() {
 	printf("**                                                                                                                             **\n");
 	printf("**                                                    The badass power !                                                       **\n");
 	printf("*********************************************************************************************************************************\n");
+
+	system("pause");
 }
 
 void bienvenue() {
@@ -445,14 +447,14 @@ void affCarte(int numeroJ1, int numeroJ2, int type, int who, int nbrCarteJ1, int
 	if (nbrCarteJ1 > 9) {
 		printf("                                      **   Carte : %d  **          **", nbrCarteJ1);
 	} else {
-		printf("                                      **   Carte : %d   **         **", nbrCarteJ1);
+		printf("                                      **   Carte : %d   **          **", nbrCarteJ1);
 	}
 
 	if (nbrCarteJ2 > 9) {
 		printf("   Carte : %d  **\n", nbrCarteJ2);
 	}
 	else {
-		printf("   Carte : %d    **\n", nbrCarteJ2);
+		printf("   Carte : %d   **\n", nbrCarteJ2);
 	}
 	printf("                                      **               **          **               **                                           \n");
 	printf("                                      *******************          *******************                                           \n\n");
@@ -607,44 +609,6 @@ void main() {
 		/*                                               Bienvenue                                            */
 		bienvenue();
 
-
-		do {
-			/*                                               32 ou 52 carte ?                                            */
-			system("cls");
-			printf("*********************************************************************************************************************************\n");
-			printf("                                             **                                  **                                              \n");
-			printf("                                             **   JOUER AVEC 32 OU 52 CARTES ?   **                                              \n");
-			printf("                                             **                                  **                                              \n");
-			printf("                                             **************************************                                              \n");
-			scanf_s("%d", &choixJeu);
-			purge();
-			// sorti boucle si entrée correcte
-			if (choixJeu == 32 || choixJeu == 52) {
-				valideChoixJeu = 1;
-			}
-
-		} while (valideChoixJeu==0);
-
-		do {
-			/*                                               32 ou 52 carte ?                                            */
-			system("cls");
-			printf("*********************************************************************************************************************************\n");
-			printf("                                           **         VITESSE DE LA PARTIE          **                                           \n");
-			printf("                                           **                                       **                                           \n");
-			printf("                                           **           0 = automatique             **                                           \n");
-			printf("                                           **       1 = rapide / 2 = manuel         **                                           \n");
-			printf("                                           *******************************************                                           \n");
-			scanf_s("%d", &choixAutomatique);
-			// purge le buffer
-			purge();
-			// sorti boucle si entrée correcte
-			if (choixAutomatique == 0 || choixAutomatique == 1 || choixAutomatique == 2) {
-				valideChoixAutomatique = 1;
-			}
-
-		} while (valideChoixAutomatique == 0);
-
-
 		/*                                               JOUER OU QUITTER ?                                            */
 
 		system("cls");
@@ -660,6 +624,42 @@ void main() {
 
 		/*                                                     JOUONS A LA BATAILLE !                                          */
 		case 0:
+
+			do {
+				/*                                               32 ou 52 carte ?                                            */
+				system("cls");
+				printf("*********************************************************************************************************************************\n");
+				printf("                                             **                                  **                                              \n");
+				printf("                                             **   JOUER AVEC 32 OU 52 CARTES ?   **                                              \n");
+				printf("                                             **                                  **                                              \n");
+				printf("                                             **************************************                                              \n");
+				scanf_s("%d", &choixJeu);
+				purge();
+				// sorti boucle si entrée correcte
+				if (choixJeu == 32 || choixJeu == 52) {
+					valideChoixJeu = 1;
+				}
+
+			} while (valideChoixJeu == 0);
+
+			do {
+				/*                                               32 ou 52 carte ?                                            */
+				system("cls");
+				printf("*********************************************************************************************************************************\n");
+				printf("                                           **         VITESSE DE LA PARTIE          **                                           \n");
+				printf("                                           **                                       **                                           \n");
+				printf("                                           **           0 = automatique             **                                           \n");
+				printf("                                           **       1 = rapide / 2 = manuel         **                                           \n");
+				printf("                                           *******************************************                                           \n");
+				scanf_s("%d", &choixAutomatique);
+				// purge le buffer
+				purge();
+				// sorti boucle si entrée correcte
+				if (choixAutomatique == 0 || choixAutomatique == 1 || choixAutomatique == 2) {
+					valideChoixAutomatique = 1;
+				}
+
+			} while (valideChoixAutomatique == 0);
 
 			system("cls");
 			printf("*********************************************************************************************************************************\n");
