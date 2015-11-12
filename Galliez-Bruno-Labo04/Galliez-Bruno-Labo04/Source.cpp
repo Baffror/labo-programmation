@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <Windows.h>
 
 void dessine() {
@@ -70,57 +71,58 @@ void bienvenue() {
 
 void affCarte(int numero, int type) {
 
-	// TROP CRADE ! Faut que j'apprenne à gérer des variables sous forme de chaine de caractères.
-	// Possibilité de bosser avec des constantes ?
+	// TROP CRADE JE SAIS MAIS J'AVAIS LA FLEMME DE TOUT REMETTRE EN ORDRE XD
+	// IL EST TARD ET J'AI ENCORE DU BOULOT HEIN !
+	// VOUS N'AVEZ JAMAIS LU CE MORCEAU DE CODE. MERCI !
 
 	if (type == 0) {
-		if (numero < 11) {
-			printf("%d de carreau", numero);
-		}else if (numero == 11) {
-			printf("Valet de carreau");
-		}else if (numero == 12) {
-			printf("Dame de carreau");
-		}else if (numero == 12) {
-			printf("Roi de carreau");
-		}else if (numero == 13) {
-			printf("As de carreau");
-		}
-	} else if (type == 1) {
-		if (numero < 11) {
+
+		if (numero == 5 || numero == 13 || numero == 21 || numero == 29 ) {
+			printf("valet de coeur");
+		} else if (numero == 6 || numero == 14 || numero == 22 || numero == 30) {
+			printf("dame de carreau");
+		} else if (numero == 7 || numero == 15 || numero == 23 || numero == 31) {
+			printf("roi de trefle");
+		} else if (numero == 8 || numero == 16 || numero == 24 || numero == 32) {
+			printf("as de pique");
+		} else if (numero < 5) {
+			numero = numero + 2;
 			printf("%d de coeur", numero);
-		}else if (numero == 11) {
-			printf("Valet de coeur");
-		}else if (numero == 12) {
-			printf("Dame de coeur");
-		}else if (numero == 12) {
-			printf("Roi de coeur");
-		}else if (numero == 13) {
-			printf("As de coeur");
-		}
-	}else if (type == 2) {
-		if (numero < 11) {
-			printf("%d de pique", numero);
-		}else if (numero == 11) {
-			printf("Valet de pique");
-		}else if (numero == 12) {
-			printf("Dame de pique");
-		}else if (numero == 12) {
-			printf("Roi de pique");
-		}else if (numero == 13) {
-			printf("As de pique");
-		}
-	}else if (type == 3) {
-		if (numero < 11) {
+		} else if(numero > 8 && numero < 13) {
+			numero = numero - 8 + 2;
+			printf("%d de carreau", numero);
+		} else if (numero > 16 && numero < 21) {
+			numero = numero - 16 + 2;
 			printf("%d de trefle", numero);
-		}else if (numero == 11) {
-			printf("Valet de trefle");
-		}else if (numero == 12) {
-			printf("Dame de trefle");
-		}else if (numero == 12) {
-			printf("Roi de trefle");
-		}else if (numero == 13) {
-			printf("As de trefle");
+		} else if (numero > 24 && numero < 32) {
+			numero = numero - 24 + 2;
+			printf("%d de pique", numero);
 		}
+
+	} else if (type == 1) {
+
+		if (numero == 10 || numero == 23 || numero == 36 || numero == 49) {
+			printf("valet de coeur");
+		} else if (numero == 11 || numero == 24 || numero == 37 || numero == 50) {
+			printf("dame de carreau");
+		} else if (numero == 12 || numero == 25 || numero == 38 || numero == 51) {
+			printf("roi de trefle");
+		} else if (numero == 13 || numero == 26 || numero == 39 || numero == 52) {
+			printf("as de pique");
+		} else if (numero < 10) {
+			numero = numero + 2;
+			printf("%d de coeur", numero);
+		} else if (numero > 8 && numero < 13) {
+			numero = numero - 13 + 2;
+			printf("%d de carreau", numero);
+		} else if (numero > 16 && numero < 21) {
+			numero = numero - 26 + 2;
+			printf("%d de trefle", numero);
+		} else if (numero > 24 && numero < 32) {
+			numero = numero - 39 + 2;
+			printf("%d de pique", numero);
+		}
+
 	}
 
 
@@ -137,6 +139,8 @@ void main() {
 
 	// variable hors boucle
 	int quitter = 0, finJeu =0,pileJoueur1=0,pileJoueur2=0,cpt = 0;
+	// initialisation random
+	srand(time(NULL));
 
 	// Taille console
 	system("mode con LINES=31 COLS=130");
@@ -153,61 +157,55 @@ void main() {
 			Tabcarte[0] => Jeu 32 cartes
 			Tabcarte[1] => Jeu 52 cartes
 
-			Tabcarte[X][0] => coeur
-			Tabcarte[X][1] => carreau
-			Tabcarte[X][2] => trèfle
-			Tabcarte[X][4] => pique
+			32 CARTES =>
+				*  1 -> 8   = 7 à as COEUR
+				*  9 -> 16  = 7 à as CARREAU
+				*  17 -> 24 = 7 à as TREFLE
+				*  25 -> 32 = 7 à as PIQUE
 
-			Les cartes : 
-				*  2 -> 10
-				* 11 -> valet
-				* 12 -> dame
-				* 13 -> Roi
-				* 14 -> As
+			52 CARTES =>
+				*  1  -> 13  = 2 à as COEUR
+				*  14 -> 26  = 2 à as CARREAU
+				*  27 -> 39  = 2 à as TREFLE
+				*  40 -> 52  = 2 à as PIQUE
 
 		*/
-
-		int tabCarte[2][4][13];
-
+		int tabCarte[2][53];
 		/*                                               JEU 32 CARTES                                            */
-		/*     COEUR                       CARREAU                      TREFLE                     PIQUE          */
-		tabCarte[0][0][0] = 7;		tabCarte[0][1][0] = 7;		tabCarte[0][2][0] = 7;		tabCarte[0][3][0] = 7;
-		tabCarte[0][0][1] = 8;		tabCarte[0][1][1] = 8;		tabCarte[0][2][1] = 8;		tabCarte[0][3][1] = 8;
-		tabCarte[0][0][2] = 9;		tabCarte[0][1][2] = 9;		tabCarte[0][2][2] = 9;		tabCarte[0][3][2] = 9;
-		tabCarte[0][0][3] = 10;		tabCarte[0][1][3] = 10;		tabCarte[0][2][3] = 10;		tabCarte[0][3][3] = 10;
-		tabCarte[0][0][4] = 11;		tabCarte[0][1][4] = 11;		tabCarte[0][2][4] = 11;		tabCarte[0][3][4] = 11;
-		tabCarte[0][0][5] = 12;		tabCarte[0][1][5] = 12;		tabCarte[0][2][5] = 12;		tabCarte[0][3][5] = 12;
-		tabCarte[0][0][6] = 13;		tabCarte[0][1][6] = 13;		tabCarte[0][2][6] = 13;		tabCarte[0][3][6] = 13;
-		tabCarte[0][0][7] = 14;		tabCarte[0][1][7] = 14;		tabCarte[0][2][7] = 14;		tabCarte[0][3][7] = 14;
+		/* COEUR                 CARREAU                   TREFLE                       PIQUE                     */
+		tabCarte[0][0] = 1;		tabCarte[0][8] = 9;		tabCarte[0][16] = 17;		tabCarte[0][24] = 25;
+		tabCarte[0][1] = 2;		tabCarte[0][9] = 10;	tabCarte[0][17] = 18;		tabCarte[0][25] = 26;
+		tabCarte[0][2] = 3;		tabCarte[0][10] = 11;	tabCarte[0][18] = 19;		tabCarte[0][26] = 27;
+		tabCarte[0][3] = 4;		tabCarte[0][11] = 12;	tabCarte[0][19] = 20;		tabCarte[0][27] = 28;
+		tabCarte[0][4] = 5;		tabCarte[0][12] = 13;	tabCarte[0][20] = 21;		tabCarte[0][28] = 29;
+		tabCarte[0][5] = 6;		tabCarte[0][13] = 14;	tabCarte[0][21] = 22;		tabCarte[0][29] = 30;
+		tabCarte[0][6] = 7;		tabCarte[0][14] = 15;	tabCarte[0][22] = 23;		tabCarte[0][30] = 31;
+		tabCarte[0][7] = 8;		tabCarte[0][15] = 16;	tabCarte[0][23] = 24;		tabCarte[0][31] = 32;
 
 		/*                                               JEU 52 CARTES                                            */
-		/*     COEUR                       CARREAU                      TREFLE                     PIQUE          */
-		tabCarte[0][0][0] = 2;		tabCarte[0][1][0] = 2;		tabCarte[0][2][0] = 2;		tabCarte[0][3][0] = 2;
-		tabCarte[0][0][1] = 3;		tabCarte[0][1][1] = 3;		tabCarte[0][2][1] = 3;		tabCarte[0][3][1] = 3;
-		tabCarte[0][0][2] = 4;		tabCarte[0][1][2] = 4;		tabCarte[0][2][2] = 4;		tabCarte[0][3][2] = 4;
-		tabCarte[0][0][3] = 5;		tabCarte[0][1][3] = 5;		tabCarte[0][2][3] = 5;		tabCarte[0][3][3] = 5;
-		tabCarte[0][0][4] = 6;		tabCarte[0][1][4] = 6;		tabCarte[0][2][4] = 6;		tabCarte[0][3][4] = 6;
-		tabCarte[0][0][5] = 7;		tabCarte[0][1][5] = 7;		tabCarte[0][2][5] = 7;		tabCarte[0][3][5] = 7;
-		tabCarte[0][0][6] = 8;		tabCarte[0][1][6] = 8;		tabCarte[0][2][6] = 8;		tabCarte[0][3][6] = 8;
-		tabCarte[0][0][7] = 9;		tabCarte[0][1][7] = 9;		tabCarte[0][2][7] = 9;		tabCarte[0][3][7] = 9;
-		tabCarte[0][0][8] = 10;		tabCarte[0][1][8] = 10;		tabCarte[0][2][8] = 10;		tabCarte[0][3][8] = 10;
-		tabCarte[0][0][9] = 11;		tabCarte[0][1][9] = 11;		tabCarte[0][2][9] = 11;		tabCarte[0][3][9] = 11;
-		tabCarte[0][0][10] = 12;	tabCarte[0][1][10] = 12;	tabCarte[0][2][10] = 12;	tabCarte[0][3][10] = 12;
-		tabCarte[0][0][11] = 13;	tabCarte[0][1][11] = 13;	tabCarte[0][2][11] = 13;	tabCarte[0][3][11] = 13;
-		tabCarte[0][0][12] = 14;	tabCarte[0][1][12] = 14;	tabCarte[0][2][12] = 14;	tabCarte[0][3][12] = 14;
+		/*    COEUR                   CARREAU                   TREFLE                       PIQUE                     */
+		tabCarte[1][0] = 1;		tabCarte[1][13] = 14;	tabCarte[1][26] = 27;		tabCarte[1][39] = 40;
+		tabCarte[1][1] = 2;		tabCarte[1][14] = 15;	tabCarte[1][27] = 28;		tabCarte[1][40] = 41;
+		tabCarte[1][2] = 3;		tabCarte[1][15] = 16;	tabCarte[1][28] = 29;		tabCarte[1][41] = 42;
+		tabCarte[1][3] = 4;		tabCarte[1][16] = 17;	tabCarte[1][29] = 30;		tabCarte[1][42] = 43;
+		tabCarte[1][4] = 5;		tabCarte[1][17] = 18;	tabCarte[1][30] = 31;		tabCarte[1][43] = 44;
+		tabCarte[1][5] = 6;		tabCarte[1][18] = 19;	tabCarte[1][31] = 32;		tabCarte[1][44] = 45;
+		tabCarte[1][6] = 7;		tabCarte[1][19] = 20;	tabCarte[1][32] = 33;		tabCarte[1][45] = 46;
+		tabCarte[1][7] = 8;		tabCarte[1][20] = 21;	tabCarte[1][33] = 34;		tabCarte[1][46] = 47;
+		tabCarte[1][8] = 9;		tabCarte[1][21] = 22;	tabCarte[1][34] = 35;		tabCarte[1][47] = 48;
+		tabCarte[1][9] = 10;	tabCarte[1][22] = 23;	tabCarte[1][35] = 36;		tabCarte[1][48] = 49;
+		tabCarte[1][10] = 11;	tabCarte[1][23] = 24;	tabCarte[1][36] = 37;		tabCarte[1][49] = 50;
+		tabCarte[1][11] = 12;	tabCarte[1][24] = 25;	tabCarte[1][37] = 38;		tabCarte[1][50] = 51;
+		tabCarte[1][12] = 13;	tabCarte[1][25] = 26;	tabCarte[1][38] = 39;		tabCarte[1][51] = 52;
 
 		/*                                               LES CARTES DU JOUEUR                                            */
 		/*
-			tabJoueur1[52] => 0-52 = max cartes possédés par le joueur
-			tabJoueur1[52][2] => 0 = ligne equivalente de la carte ( carreau, coeur, trefle ou pique )
-								 1 = N° de la carte correspondant dans le tableau tabCarte
-
-			Pour obtenir la valeur de la carte après le mélange, nous avons donc :
-			tabCarte[0 ou 1][(tabJoueur1[X][0])][(tabJoueur1[X][1])]
+			tabJoueur1[52] => 0-52 = max cartes possédés par le joueur ( valable pour le jeu 32 ou 52 cartes )
+			tabJoueur1[X] = valeur de la carte possédée ( 1 a 32 pour 32 carte et 1 a 52 pour 52 cartes )
 										
 		*/
-		int tabJoueur1[52][2] = { 0,0 };
-		int tabJoueur2[52][2] = { 0,0 };
+		int tabJoueur1[52] = { 0 };
+		int tabJoueur2[52] = { 0 };
 
 
 
@@ -279,38 +277,34 @@ void main() {
 			printf("                                       *************************************************                                         \n");
 
 			/* MELANGEONS LES CARTES ouai ok c'est des tableaux mais on se comprends non ? */
-			for (int ligne = 0; ligne < 4; ligne++) {
+			for (int melange = 0; melange < 50; melange++) {
 
-				for (int melange = 0; melange < 50; melange++) {
-						
-					if (choixJeu == 32) {
+				if (choixJeu == 32) {
 
-						// tir ( PAN ! ) deux valeurs entre 0 et 7
-						int rand1 = rand() % 8;
-						int rand2 = rand() % 8;
+					// tir ( PAN ! ) deux valeurs entre 0 et 31
+					int rand1 = rand() % 32;
+					int rand2 = rand() % 32;
 
-						// les rand sont pas identique hein ?
-						if (rand1 != rand2) {
-							int temp1 = tabCarte[0][ligne][rand1];
-							int temp2 = tabCarte[0][ligne][rand2];
-							tabCarte[0][ligne][rand1] = temp2;
-							tabCarte[0][ligne][rand2] = temp1;
-						}
+					// les rand sont pas identique hein ?
+					if (rand1 != rand2) {
+						int temp1 = tabCarte[0][rand1];
+						int temp2 = tabCarte[0][rand2];
+						tabCarte[0][rand1] = temp2;
+						tabCarte[0][rand2] = temp1;
+					}
 
-					} else {
+				} else {
 
-						// tir ( PAN ! ) deux valeurs entre 0 et 13
-						int rand1 = rand() % 14;
-						int rand2 = rand() % 14;
+					// tir ( PAN ! ) deux valeurs entre 0 et 52
+					int rand1 = rand() % 52;
+					int rand2 = rand() % 52;
 
-						// les rand sont pas identique hein ?
-						if (rand1 != rand2) {
-							int temp1 = tabCarte[1][ligne][rand1];
-							int temp2 = tabCarte[1][ligne][rand2];
-							tabCarte[1][ligne][rand1] = temp2;
-							tabCarte[1][ligne][rand2] = temp1;
-						}
-
+					// les rand sont pas identique hein ?
+					if (rand1 != rand2) {
+						int temp1 = tabCarte[1][rand1];
+						int temp2 = tabCarte[1][rand2];
+						tabCarte[1][rand1] = temp2;
+						tabCarte[1][rand2] = temp1;
 					}
 
 				}
@@ -330,55 +324,48 @@ void main() {
 			// DISTRIBUTION POUR UN JEU DE 32 CARTES
 			if (choixJeu == 32) {
 
-				for (int i = 0; i < 4; i++) {
-					
-					for (int j = 0; j < 8; j++) {
+				for (int i = 0; i < 33; i++) {
 
-						// donne la carte au joueur 1
-						if (j % 2 == 0) {
-							tabJoueur1[cpt][0] = i;
-							tabJoueur1[cpt][1] = j;
-							// Nombre de carte dans la pile joueur1
-							nbrCarteJoueur1++;
+					// donne la carte au joueur 1
+					if (i % 2 == 0) {
 						// donne la carte au joueur 2
-						} else {
-							tabJoueur2[cpt][0] = i;
-							tabJoueur2[cpt][1] = j;
-							// Nombre de carte dans la pile joueur2
-							nbrCarteJoueur2++;
-							// indice permettant de créer la pile joueur.
-							cpt++;
-						}
-
-
+						tabJoueur1[cpt] = tabCarte[0][i];
+						// Nombre de carte dans la pile joueur1
+						nbrCarteJoueur1++;
+						
+					} else {
+						// donne la carte au joueur 2
+						tabJoueur2[cpt] = tabCarte[0][i];
+						// Nombre de carte dans la pile joueur2
+						nbrCarteJoueur2++;
+						// indice permettant de créer la pile joueur.
+						cpt++;
 					}
 
+
 				}
+
 			// DISTRIBUTION POUR UN JEU DE 52 CARTES
 			} else {
 
-				for (int i = 0; i < 4; i++) {
-					
-					for (int j = 0; j < 8; j++) {
+				for (int i = 0; i < 53; i++) {
 
-						// donne la carte au joueur 1
-						if (j % 2 == 0) {
-							tabJoueur1[cpt][0] = i;
-							tabJoueur1[cpt][1] = j;
-							// Nombre de carte dans la pile joueur1
-							nbrCarteJoueur1++;
+					// donne la carte au joueur 1
+					if (i % 2 == 0) {
 						// donne la carte au joueur 2
-						} else {
-							tabJoueur2[cpt][0] = i;
-							tabJoueur2[cpt][1] = j;
-							// Nombre de carte dans la pile joueur2
-							nbrCarteJoueur2++;
-							// indice permettant de créer la pile joueur.
-							cpt++;
-						}
+						tabJoueur1[cpt] = tabCarte[1][i];
+						// Nombre de carte dans la pile joueur1
+						nbrCarteJoueur1++;
 
-
+					} else {
+						// donne la carte au joueur 2
+						tabJoueur2[cpt] = tabCarte[1][i];
+						// Nombre de carte dans la pile joueur2
+						nbrCarteJoueur2++;
+						// indice permettant de créer la pile joueur.
+						cpt++;
 					}
+
 
 				}
 
@@ -421,26 +408,22 @@ void main() {
 				} else {
 
 					/************************************ VOYONS LES CARTES QUI SORTENT ***********************************/
-					printf("\n*****\npiljoueur 1 => %d / pilejoueur2 => %d\nJ1 => %d / %d\J2 => %d / %d\n*****\n", pileJoueur1, pileJoueur2, tabJoueur1[pileJoueur1][1], tabJoueur1[pileJoueur1][0], tabJoueur2[pileJoueur2][1], tabJoueur2[pileJoueur2][0]);
+					printf("\n*****\npiljoueur1 => %d / pilejoueur2 => %d\nJ1 => %d \nJ2 => %d\n*****\n", pileJoueur1, pileJoueur2, tabJoueur1[pileJoueur1], tabJoueur2[pileJoueur2]);
 					printf("Joueur 1 tire : ");
-					affCarte(tabJoueur1[pileJoueur1][1], tabJoueur1[pileJoueur1][0]);
+					affCarte(tabJoueur1[pileJoueur1], choixJeu);
 					printf(" VS ");
 					printf("Joueur 2 tire : ");
-					affCarte(tabJoueur2[pileJoueur2][1], tabJoueur2[pileJoueur2][0]);
+					affCarte(tabJoueur2[pileJoueur2], choixJeu);
 					printf("\n");
 					system("pause");
 
 					// on avance dans la pile
 					pileJoueur1++;
 					pileJoueur2++;
-					if (pileJoueur1 > nbrCarteJoueur1) { pileJoueur1 = 0; }
-					if (pileJoueur1 > nbrCarteJoueur1) { pileJoueur1 = 0; }
+					if (pileJoueur1 >= nbrCarteJoueur1) { pileJoueur1 = 0; }
+					if (pileJoueur1 >= nbrCarteJoueur2) { pileJoueur2 = 0; }
 
-					/*
-					if ( tabCarte[choixJeu][tabJoueur1[pileJoueur1][0]][tabJoueur1[pileJoueur1][1]] == tabCarte[choixJeu][tabJoueur2[pileJoueur2][0]][tabJoueur2[pileJoueur2][1]] ) {
 
-					}
-					*/
 				}
 
 			} while (finJeu == 0);
