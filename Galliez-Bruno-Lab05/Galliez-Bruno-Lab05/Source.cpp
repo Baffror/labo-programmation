@@ -3,7 +3,6 @@
 #include <time.h>
 #include <math.h>
 #include <Windows.h>
-#include <windows.system.h>
 
 void dessine() {
 
@@ -50,9 +49,7 @@ void purge(void)
 	while ((c = fgetc(stdin)) != '\n' && c != EOF) {
 	}
 }
-HANDLE wHnd;    // Handle to write to the console.
 
-HANDLE rHnd;    // Handle to read from the console.
 void main() {
 
 	// initialisation varibables
