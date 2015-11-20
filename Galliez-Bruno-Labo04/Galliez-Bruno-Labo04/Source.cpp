@@ -78,7 +78,7 @@ void affCarte(int numeroJ1, int numeroJ2, int type, int who, int nbrCarteJ1, int
 	// IL EST TARD ET J'AI ENCORE DU BOULOT HEIN !
 	// VOUS N'AVEZ JAMAIS LU CE MORCEAU DE CODE. MERCI !
 	// pique   =>  \6
-	// coeur   =>  \3
+	// coeur   =>  \3 OU ?
 	// trefle  =>  \5
 	// carreau =>  \4
 
