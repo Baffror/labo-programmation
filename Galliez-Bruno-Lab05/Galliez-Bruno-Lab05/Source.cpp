@@ -58,6 +58,8 @@ void main() {
 	int quitter = 0, changeValeur = 0, temp = 10001, tempIndice = -1, cpt = 0, choix = 0, valideChoix = 0;
 	srand(time(NULL));
 
+
+
 	// Taille console
 	system("mode con LINES=55 COLS=130");
 	// Titre

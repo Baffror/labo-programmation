@@ -77,10 +77,10 @@ void affCarte(int numeroJ1, int numeroJ2, int type, int who, int nbrCarteJ1, int
 	// TROP CRADE JE SAIS MAIS J'AVAIS LA FLEMME DE TOUT REMETTRE EN ORDRE XD
 	// IL EST TARD ET J'AI ENCORE DU BOULOT HEIN !
 	// VOUS N'AVEZ JAMAIS LU CE MORCEAU DE CODE. MERCI !
-	// pique   =>  \6
-	// coeur   =>  \3 OU ?
-	// trefle  =>  \5
-	// carreau =>  \4
+	// pique   =>  \6 OU &#9824;
+	// coeur   =>  \3 OU &#9829;
+	// trefle  =>  \5 OU &#9827;
+	// carreau =>  \4 OU &#9830;
 
 	int tabType[4] = { 6,3,5,4 };
 	char valCarteJ1, valCarteJ2;
