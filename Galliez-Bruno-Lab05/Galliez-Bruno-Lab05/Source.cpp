@@ -64,10 +64,12 @@ void main() {
 
 
 	// initialisation varibables
-	int tabRand[99];
-	int tab[99];
+	int tabRand[100] = {0};
+	int tab[100] = {0};
 	int quitter = 0, changeValeur = 0, temp = 10001, tempIndice = -1, cpt = 0, choix = 0, valideChoix = 0;
 	srand(time(NULL));
+
+
 
 	// Taille console
 	system("mode con LINES=55 COLS=130");
@@ -79,7 +81,6 @@ void main() {
 		// réinitialise en cas de boucle
 		changeValeur = 0;
 		quitter = 0;
-		changeValeur = 0;
 		temp = 10001;
 		tempIndice = -1;
 		cpt = 0;
@@ -99,7 +100,7 @@ void main() {
 			temp = 10001;
 			tempIndice = -1;
 
-			for (int i = 0; i <= 99; i++) {
+			for (int i = 0; i < 100; i++) {
 
 				if (tabRand[i] != -1 && tabRand[i] < temp) {
 					temp = tabRand[i];
@@ -160,7 +161,7 @@ void main() {
 				case 2 :
 					system("cls");
 					printf("Affichage des chiffres par ordre croissant :\n");
-					for (int i = 0; i <= 99; i++) {
+					for (int i = 0; i < 100; i++) {
 						printf("%d\n", tab[i]);
 						// pour réguler l'affichage hors taille d'affichage
 						if (i == 50) {
@@ -173,7 +174,7 @@ void main() {
 					system("cls");
 					printf("Affichage des chiffres par ordre decroissant :\n");
 					for (int i = 99; i >= 0; i--) {
-						printf("%d\n", tab[i]);
+						printf("[%d] %d\n",i, tab[i]);
 						// pour réguler l'affichage hors taille d'affichage
 						if (i == 50) {
 							system("pause");
@@ -198,8 +199,7 @@ void main() {
 						printf("%d\n", tab[i]);
 						if (i % 2 == 0) {
 							i--;
-						}
-						else {
+						} else {
 							i -= 3;
 						}
 					}
