@@ -43,14 +43,25 @@ void dessine() {
 	system("pause");
 }
 
-void purge(void)
-{
+void purge(void){
 	int c;
 	while ((c = fgetc(stdin)) != '\n' && c != EOF) {
 	}
 }
+void main()
 
+{
+
+	char tabo[10];
+
+scanf("%s",&&tabo);
+printf("%s", tabo);
+system("pause");
+
+}
+/*
 void main() {
+
 
 	// initialisation varibables
 	int tabRand[99];
@@ -258,3 +269,4 @@ void main() {
 	dessine();
 
 }
+*/
