@@ -4,9 +4,11 @@
 void main() {
 
 	int nligne = 5, ncolonne = 5;
-	int matrice[5][5] = { {1,2,3,4,5},{ 1,2,3,4,5 },{ 1,2,3,4,5 },{ 1,2,3,4,5 },{ 1,2,3,4,5 } };
+	int matrice[5][5] = { { 10 } };
+
 	int i = 0, j = 0;
 	int determinant = 0, produit = 0;
+
 
 	for (i = 0; i < nligne; i++) {
 
@@ -22,7 +24,7 @@ void main() {
 
 	}
 
-	for (i = nligne-1; i >=0; i--) {
+	for (i = 0-1; i >=0; i--) {
 
 		for (j = 0; j < nligne; j++) {
 
